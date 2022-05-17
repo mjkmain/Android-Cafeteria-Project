@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,22 @@ public class MainDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainDisplay.this, MyPage.class);
+                startActivity(intent);
+            }
+        });
+
+        diffMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainDisplay.this, DiffMenuSelec.class);
+                startActivity(intent);
             }
         });
 

@@ -17,6 +17,7 @@
         />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cd_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
@@ -65,7 +66,7 @@
             android:layout_height="100dp"
             android:text="보유중인 식권 : 10개"
             android:background="@drawable/text_background"
-            android:textSize="25dp"
+            android:textSize="20dp"
             />
 
         <Button
@@ -76,6 +77,27 @@
             android:layout_marginLeft="10dp"
             android:textSize="20dp"/>
     </LinearLayout>
+
+
+    <TextView
+        android:layout_margin="20dp"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:text="포인트 : 1000p\n(5% 적립)"
+        android:background="@drawable/text_background"
+        android:textSize="20dp"
+        android:gravity="center"
+
+        />
+    <ImageButton
+        android:id="@+id/mp_prev"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:scaleType="fitXY"
+        android:src="@drawable/previous" />
 
 
 

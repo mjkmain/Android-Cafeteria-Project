@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFEF1"
+        android:queryBackground="@drawable/text_background"
+        android:queryHint="검색어를 입력하시오"
+        android:maxWidth="400dp"
+        android:isScrollContainer="true"/>
+
+    <ListView
+        android:id="@+id/menu_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </ListView>
+</LinearLayout>
