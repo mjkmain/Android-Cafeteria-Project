@@ -1,10 +1,12 @@
 package com.example.project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -19,6 +21,8 @@ public class DiffMenuSelec extends AppCompatActivity {
     ListView menu_lv;
     ArrayList<MenuSelect> data;
     SearchView sv;
+    ImageButton prev, myPage;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,24 @@ public class DiffMenuSelec extends AppCompatActivity {
 
         menu_lv = (ListView) findViewById(R.id.menu_lv);
         sv = (SearchView) findViewById(R.id.searchView);
+        prev = (ImageButton) findViewById(R.id.prev);
+        myPage = (ImageButton) findViewById(R.id.myPage);
+
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DiffMenuSelec.this, MyPage.class);
+                startActivity(intent);
+            }
+        });
+
 
         sv.setSubmitButtonEnabled(true);
 
