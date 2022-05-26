@@ -25,7 +25,7 @@ import java.io.IOException;
 
 public class MainDisplay extends AppCompatActivity {
 
-    ImageButton prev, myPage;
+    ImageButton myPage;
     TextView menuDisplay;
     Button diffMenu, payment;
 
@@ -35,7 +35,7 @@ public class MainDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_display);
 
-        prev = (ImageButton) findViewById(R.id.prev);
+//        prev = (ImageButton) findViewById(R.id.prev);
         myPage = (ImageButton) findViewById(R.id.myPage);
         menuDisplay = (TextView) findViewById(R.id.menuDisplay);
         diffMenu = (Button) findViewById(R.id.checkDiffMenu);
@@ -43,12 +43,12 @@ public class MainDisplay extends AppCompatActivity {
 
 
 
-        prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        prev.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         myPage.setOnClickListener(new View.OnClickListener() {
             @Override
