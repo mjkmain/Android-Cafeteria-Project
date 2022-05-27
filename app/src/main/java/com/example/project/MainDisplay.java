@@ -16,11 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.opencsv.CSVReader;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+
+import java.io.FileReader;
 import java.io.IOException;
 
 public class MainDisplay extends AppCompatActivity {
@@ -67,7 +71,20 @@ public class MainDisplay extends AppCompatActivity {
         });
 
     }
+    static class CsvReader{
+        FileReader fileReader;
+
+        public static void readDataFromCsv(String filePath) throws IOException{
+            CSVReader reader = new CSVReader(new FileReader(filePath));
+            String[] nextLine;
+
+            while((nextLine = reader.readNext()) != null){
+                for(int i = 0; i<nextLine.length; i++){
+
+                }
+            }
+        }
+    }
 
 
 
-}
