@@ -190,10 +190,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 autoLoginEdit.commit();
 
-
-
-
-
             }
         });
 

@@ -1,6 +1,8 @@
 package com.example.project;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -40,6 +42,7 @@ public class MainDisplay extends AppCompatActivity {
         menuDisplay = (TextView) findViewById(R.id.menuDisplay);
         diffMenu = (Button) findViewById(R.id.checkDiffMenu);
         payment = (Button) findViewById(R.id.payment);
+
 
         SimpleDateFormat mFormat = new SimpleDateFormat("MM-dd");
         Date mDate = new Date(System.currentTimeMillis());
@@ -97,6 +100,21 @@ public class MainDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainDisplay.this, DiffMenuSelec.class);
+                startActivity(intent);
+            }
+        });
+
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences menu = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor menuEdit = menu.edit();
+
+                menuEdit.putString("menuName", "백반");
+                menuEdit.putInt("menuPrice", 4800);
+                menuEdit.commit();
+
+                Intent intent = new Intent(MainDisplay.this, PaymentActivity.class);
                 startActivity(intent);
             }
         });

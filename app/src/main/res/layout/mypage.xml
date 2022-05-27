@@ -98,16 +98,22 @@
         android:gravity="center"
 
         />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageButton
         android:id="@+id/mp_prev"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_margin="30dp"
         android:background="@drawable/round_button"
         android:scaleType="fitXY"
-        android:src="@drawable/previous" />
+        android:src="@drawable/previous"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

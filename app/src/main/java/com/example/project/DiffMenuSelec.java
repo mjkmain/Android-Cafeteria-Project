@@ -1,11 +1,14 @@
 package com.example.project;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public class DiffMenuSelec extends AppCompatActivity {
@@ -80,6 +84,7 @@ public class DiffMenuSelec extends AppCompatActivity {
     }
 }
 
+
 class MenuSelect{
     String mName;
     int price;
@@ -91,6 +96,8 @@ class MenuSelect{
         this.imageID = imageID;
     }
 }
+
+
 
 class MyAdapter extends BaseAdapter{
     Context mContext = null;
@@ -135,6 +142,27 @@ class MyAdapter extends BaseAdapter{
 
         menuName.setText(mData.get(i).mName);
         menuPrice.setText(mData.get(i).price+ "");
+
+        Button btn_order = itemLayout.findViewById(R.id.btn_order);
+        btn_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int menuPrice = mData.get(i).price;
+                int menuImage = mData.get(i).imageID;
+                String menuName = mData.get(i).mName;
+
+                SharedPreferences menu = mContext.getSharedPreferences("Menu", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor menuEdit = menu.edit();
+
+                menuEdit.putInt("menuPrice", menuPrice);
+                menuEdit.putInt("menuImage", menuImage);
+                menuEdit.putString("menuName", menuName);
+                menuEdit.commit();
+
+                Intent intent = new Intent(mContext, PaymentActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
 
 
         return itemLayout;
