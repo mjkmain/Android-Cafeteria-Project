@@ -71,7 +71,6 @@ public class PaymentActivity extends AppCompatActivity {
                 tv_count.setText(number + "");
                 int totalPrice = menuPrice*number;
                 tv_detail.setText("주문 내역 : " + menuName + "\n수랑 : "+number+"\n가격 : " + totalPrice);
-
             }
         });
 

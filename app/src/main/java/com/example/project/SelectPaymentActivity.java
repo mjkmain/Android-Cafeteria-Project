@@ -11,9 +11,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SelectPaymentActivity extends AppCompatActivity {
-    ImageButton ib_kakao, ib_naver, ib_payco, ib_credit;
-    String payMethod;
+    private ImageButton ib_kakao, ib_naver, ib_payco, ib_credit;
+    private String payMethod;
+    private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +36,9 @@ public class SelectPaymentActivity extends AppCompatActivity {
 
         SharedPreferences menu = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
 
-
-
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("project");
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
         View.OnClickListener onClickListener = new Button.OnClickListener(){
 
@@ -50,11 +58,21 @@ public class SelectPaymentActivity extends AppCompatActivity {
                 int payPrice = menu.getInt("menuPrice", 0);
                 String payMenu = menu.getString("menuName", null);
                 int payNumber = menu.getInt("orderNumber", 0);
+
                 payEdit.putInt("payPrice", payPrice);
+                payEdit.putInt("payTotalPrice", payPrice*payNumber);
                 payEdit.commit();
 
                 Toast.makeText(getApplicationContext(), payMenu +"수량 : " +payNumber+"\n"+ payMethod + payPrice*payNumber +"원 \n 결제완료", Toast.LENGTH_SHORT).show();
 
+                UserToken userToken = new UserToken();
+                userToken.setMenuPrice(payPrice);
+                userToken.setMenuNumber(payNumber);
+                userToken.setMenuTotalPrice(payPrice*payNumber);
+                userToken.setPayMethod(payMethod);
+
+
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu).setValue(userToken);
 
 
                 Intent intent = new Intent(SelectPaymentActivity.this, MyPage.class);
