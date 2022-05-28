@@ -1,5 +1,7 @@
 package com.example.project;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -13,14 +15,19 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SelectPaymentActivity extends AppCompatActivity {
     private ImageButton ib_kakao, ib_naver, ib_payco, ib_credit;
     private String payMethod;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +54,16 @@ public class SelectPaymentActivity extends AppCompatActivity {
                 switch (view.getId()){
                     case R.id.ib_kakao:
                         payMethod = "카카오페이";
+                        break;
                     case R.id.ib_naver:
                         payMethod = "네이버페이";
+                        break;
                     case R.id.ib_payco:
                         payMethod = "페이코";
+                        break;
                     case R.id.ib_credit:
                         payMethod = "신용카드";
+                        break;
                 }
                 payEdit.putString("payMethod", payMethod);
                 int payPrice = menu.getInt("menuPrice", 0);
@@ -60,6 +71,7 @@ public class SelectPaymentActivity extends AppCompatActivity {
                 int payNumber = menu.getInt("orderNumber", 0);
 
                 payEdit.putInt("payPrice", payPrice);
+                payEdit.putInt("payNumber", payNumber);
                 payEdit.putInt("payTotalPrice", payPrice*payNumber);
                 payEdit.commit();
 
@@ -70,6 +82,8 @@ public class SelectPaymentActivity extends AppCompatActivity {
                 userToken.setMenuNumber(payNumber);
                 userToken.setMenuTotalPrice(payPrice*payNumber);
                 userToken.setPayMethod(payMethod);
+
+
 
 
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu).setValue(userToken);
