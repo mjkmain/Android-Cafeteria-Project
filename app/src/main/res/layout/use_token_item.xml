@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="5dp"
+    >
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/use_menu_name"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:layout_width="180dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#8ABDDA"
+                android:text="메뉴 이름"/>
+            <TextView
+                android:id="@+id/use_number_token"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:layout_width="180dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="식권 개수"
+                android:background="#89D8EC"
+                />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_use"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="식권 사용"
+            android:background="@drawable/custombutton"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

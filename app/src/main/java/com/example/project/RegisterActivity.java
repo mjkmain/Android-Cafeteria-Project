@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 //회원가입
                 String strEmail = et_email.getText().toString();
                 String strPass = et_pass.getText().toString();
+                String strName = et_name.getText().toString();
 
                 //Firebase Auth
                 mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPass).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -64,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                             account.setIdToken(firebaseUser.getUid());
                             account.setEmailID(firebaseUser.getEmail());
                             account.setPassWord(strPass);
+                            account.setUserName(strName);
 
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
                             Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();

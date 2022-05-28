@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -27,6 +30,8 @@ public class SelectPaymentActivity extends AppCompatActivity {
     private String payMethod;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
+
+    private Integer tokenNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +48,10 @@ public class SelectPaymentActivity extends AppCompatActivity {
 
         SharedPreferences menu = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
 
+
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("project");
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
 
         View.OnClickListener onClickListener = new Button.OnClickListener(){
 
@@ -68,27 +74,55 @@ public class SelectPaymentActivity extends AppCompatActivity {
                 payEdit.putString("payMethod", payMethod);
                 int payPrice = menu.getInt("menuPrice", 0);
                 String payMenu = menu.getString("menuName", null);
-                int payNumber = menu.getInt("orderNumber", 0);
+                int menuNumber = menu.getInt("orderNumber", 0);
+
+
 
                 payEdit.putInt("payPrice", payPrice);
-                payEdit.putInt("payNumber", payNumber);
-                payEdit.putInt("payTotalPrice", payPrice*payNumber);
+                payEdit.putInt("menuNumber", menuNumber);
+                payEdit.putInt("payTotalPrice", payPrice*menuNumber);
                 payEdit.commit();
 
-                Toast.makeText(getApplicationContext(), payMenu +"수량 : " +payNumber+"\n"+ payMethod + payPrice*payNumber +"원 \n 결제완료", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), payMenu +"수량 : " +menuNumber+"\n"+ payMethod + payPrice*menuNumber +"원 \n 결제완료", Toast.LENGTH_SHORT).show();
 
-                UserToken userToken = new UserToken();
-                userToken.setMenuPrice(payPrice);
-                userToken.setMenuNumber(payNumber);
-                userToken.setMenuTotalPrice(payPrice*payNumber);
-                userToken.setPayMethod(payMethod);
+                /*
+                * Firebase에서 기존에 있던 토큰 수 가져오기
+                * */
+                mDatabaseRef = FirebaseDatabase.getInstance().getReference("project");
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu)
+                        .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            if(task.getResult().exists()){
+                                Toast.makeText(getApplicationContext(), "Successfully Read", Toast.LENGTH_SHORT).show();
+                                DataSnapshot dataSnapshot = task.getResult();
+                                String existTokenNumber = String.valueOf(dataSnapshot.child("tokenNumber").getValue());
+                                tokenNumber = Integer.parseInt(existTokenNumber);
 
 
+                                /*
+                                 * Firebase에 데이터 저장 (menuPrice, menuTotalPrice, payMethod, tokenNumber)
+                                 * */
 
+                            }else{
+                                Toast.makeText(getApplicationContext(), "UserDoesn't Exist", Toast.LENGTH_SHORT).show();
+                            }
+                            tokenNumber += menuNumber;
+                            UserToken userToken = new UserToken();
+                            userToken.setMenuName(payMenu);
+                            userToken.setMenuPrice(payPrice);
+                            userToken.setTokenNumber(tokenNumber);
+                            userToken.setMenuTotalPrice(payPrice*menuNumber);
+                            userToken.setPayMethod(payMethod);
 
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu).setValue(userToken);
+                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu).setValue(userToken);
 
-
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Failed to read", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 Intent intent = new Intent(SelectPaymentActivity.this, MyPage.class);
                 startActivity(intent);
                 finish();

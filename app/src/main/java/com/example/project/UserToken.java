@@ -1,10 +1,19 @@
 package com.example.project;
 
 public class UserToken {
-    private int menuNumber;
+    private int tokenNumber;
     private int menuPrice;
     private int menuTotalPrice;
     private String payMethod;
+    private String menuName;
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
 
     public String getPayMethod() {
         return payMethod;
@@ -22,12 +31,12 @@ public class UserToken {
         this.menuTotalPrice = menuTotalPrice;
     }
 
-    public int getMenuNumber() {
-        return menuNumber;
+    public int getTokenNumber() {
+        return tokenNumber;
     }
 
-    public void setMenuNumber(int menuNumber) {
-        this.menuNumber = menuNumber;
+    public void setTokenNumber(int menuNumber) {
+        this.tokenNumber = menuNumber;
     }
 
     public int getMenuPrice() {

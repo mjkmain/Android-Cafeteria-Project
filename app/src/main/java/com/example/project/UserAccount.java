@@ -4,7 +4,7 @@ public class UserAccount {
     private String idToken;
     private String emailID;
     private String passWord;
-
+    private String userName;
     public UserAccount() {
 
     }
@@ -33,4 +33,11 @@ public class UserAccount {
         this.idToken = idToken;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
