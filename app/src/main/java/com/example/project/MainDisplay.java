@@ -112,6 +112,7 @@ public class MainDisplay extends AppCompatActivity {
 
                 menuEdit.putString("menuName", "백반");
                 menuEdit.putInt("menuPrice", 4800);
+                menuEdit.putInt("menuImage", R.drawable.dish);
                 menuEdit.commit();
 
                 Intent intent = new Intent(MainDisplay.this, PaymentActivity.class);

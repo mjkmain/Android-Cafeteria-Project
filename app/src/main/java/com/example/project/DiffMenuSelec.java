@@ -141,7 +141,7 @@ class MyAdapter extends BaseAdapter{
         TextView menuPrice = (TextView) itemLayout.findViewById(R.id.menu_price);
 
         menuName.setText(mData.get(i).mName);
-        menuPrice.setText(mData.get(i).price+ "");
+        menuPrice.setText("가격 : "+mData.get(i).price +"원");
 
         Button btn_order = itemLayout.findViewById(R.id.btn_order);
         btn_order.setOnClickListener(new View.OnClickListener() {
