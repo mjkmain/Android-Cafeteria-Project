@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -72,17 +73,35 @@ public class MyPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful()){
                     if(task.getResult().exists()){
-                        DataSnapshot dataSnapshot = task.getResult();
-                        String userName = String.valueOf(dataSnapshot.child("userName").getValue());
-                        tv_userName.setText("User Name : \n"+userName);
+                        SharedPreferences sharedPreferences = getSharedPreferences("GoogleLogin", MODE_PRIVATE);
+                        Boolean isGoogle = sharedPreferences.getBoolean("Google", false);
+                        /*
+                         * 회원가입으로 로그인한 경우
+                         * */
+                        if(!isGoogle) {
+                            DataSnapshot dataSnapshot = task.getResult();
+                            String userName = String.valueOf(dataSnapshot.child("userName").getValue());
+                            tv_userName.setText("User Name : \n" + userName);
 
-                        String userID = String.valueOf(dataSnapshot.child("emailID").getValue());
-                        tv_userID.setText("User ID : \n"+userID);
-
+                            String userID = String.valueOf(dataSnapshot.child("emailID").getValue());
+                            tv_userID.setText("User ID : \n" + userID);
+                        }
+                        /*
+                         * 구글로 로그인한 경우 User Name, User ID -> intent로 설정
+                         * */
+                        else{
+                            String UserName = sharedPreferences.getString("UserName", null);
+                            String UserID = sharedPreferences.getString("UserID", null);
+                            tv_userName.setText("User Name : \n"+UserName);
+                            tv_userID.setText("User ID : \n"+UserID);
+                        }
                     }
                 }
             }
         });
+
+
+
 
         /*
         * 보유중인 식권에 결과 표시

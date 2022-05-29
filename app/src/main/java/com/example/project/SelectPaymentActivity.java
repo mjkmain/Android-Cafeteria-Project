@@ -103,7 +103,6 @@ public class SelectPaymentActivity extends AppCompatActivity {
                                 tokenNumber = Integer.parseInt(existTokenNumber);
 
 
-
                                 /*
                                  * Firebase에 데이터 저장 (menuPrice, menuTotalPrice, payMethod, tokenNumber)
                                  * */

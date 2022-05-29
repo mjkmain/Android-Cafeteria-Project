@@ -45,7 +45,6 @@ public class UseToken extends AppCompatActivity {
     ArrayList<String> menuName = new ArrayList<String>();
     ArrayList<Integer> numberToken = new ArrayList<Integer>();
 
-//    int count = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +53,6 @@ public class UseToken extends AppCompatActivity {
         menuName.clear();
         numberToken.clear();
 
-//        Intent intent = getIntent();
-//        count = intent.getIntExtra("count", 0);
 
         listView = (ListView) findViewById(R.id.useTokenListview);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -68,40 +65,7 @@ public class UseToken extends AppCompatActivity {
                 finish();
             }
         });
-        /*
-        * 복붙
-        * */
 
-
-//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("project").child("UserAccount")
-//                .child(firebaseUser.getUid());
-//        mTokenRef = mDatabaseRef.child("Tokens");
-//        mTokenRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot data : snapshot.getChildren()){
-//                    UserToken userToken = data.getValue(UserToken.class);
-//                    menuName.add(userToken.getMenuName());
-//                    numberToken.add(Integer.valueOf(userToken.getTokenNumber()));
-//
-//                }
-//                data = new ArrayList<selectedMenu>();
-//                for(int i = 0; i < menuName.size(); i++){
-//                    data.add(new selectedMenu(menuName.get(i).toString(), numberToken.get(i)));
-//                    Toast.makeText(getApplicationContext(), menuName.get(i), Toast.LENGTH_SHORT).show();
-//                }
-//                SharedPreferences tokenNumber = getSharedPreferences("TokenNumber", Activity.MODE_PRIVATE);
-//                SharedPreferences.Editor tokenNumberEdit = tokenNumber.edit();
-//                tokenNumberEdit.putInt("number", menuName.size());
-//                tokenNumberEdit.commit();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
         SharedPreferences selectedMenu = getSharedPreferences("SelectedMenu", Activity.MODE_PRIVATE);
         String strList = selectedMenu.getString("menuList", null);
@@ -179,6 +143,18 @@ class UseTokenAdapter extends BaseAdapter{
 
         menuName.setText(mData.get(i).mName);
         numberToken.setText("식권 수 :"+ mData.get(i).numberToken+" 개");
+
+        Button btn_use = itemLayout.findViewById(R.id.btn_use);
+        btn_use.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, QRGeneratorActivity.class);
+                intent.putExtra("menuName", mData.get(i).mName);
+                intent.putExtra("tokenNumber", mData.get(i).numberToken);
+                mContext.startActivity(intent);
+
+            }
+        });
 
 
 
