@@ -37,6 +37,7 @@ public class SelectPaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_payment);
+        tokenNumber = 0;
 
         ib_kakao = findViewById(R.id.ib_kakao);
         ib_naver = findViewById(R.id.ib_naver);
@@ -47,6 +48,8 @@ public class SelectPaymentActivity extends AppCompatActivity {
         SharedPreferences.Editor payEdit = pay.edit();
 
         SharedPreferences menu = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
+
+        SharedPreferences tokenNum = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -95,18 +98,16 @@ public class SelectPaymentActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if(task.isSuccessful()){
                             if(task.getResult().exists()){
-                                Toast.makeText(getApplicationContext(), "Successfully Read", Toast.LENGTH_SHORT).show();
                                 DataSnapshot dataSnapshot = task.getResult();
                                 String existTokenNumber = String.valueOf(dataSnapshot.child("tokenNumber").getValue());
                                 tokenNumber = Integer.parseInt(existTokenNumber);
+
 
 
                                 /*
                                  * Firebase에 데이터 저장 (menuPrice, menuTotalPrice, payMethod, tokenNumber)
                                  * */
 
-                            }else{
-                                Toast.makeText(getApplicationContext(), "UserDoesn't Exist", Toast.LENGTH_SHORT).show();
                             }
                             tokenNumber += menuNumber;
                             UserToken userToken = new UserToken();

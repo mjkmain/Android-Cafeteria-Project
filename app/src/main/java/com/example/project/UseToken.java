@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -30,24 +32,30 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class UseToken extends AppCompatActivity {
     ListView listView;
     ArrayList<selectedMenu> data;
     ImageButton prev;
-    MyPage mp = new MyPage();
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef, mTokenRef;
     ArrayList<String> menuName = new ArrayList<String>();
     ArrayList<Integer> numberToken = new ArrayList<Integer>();
-    String strMenuList ="";
 
-
+//    int count = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_token);
+
+        menuName.clear();
+        numberToken.clear();
+
+//        Intent intent = getIntent();
+//        count = intent.getIntExtra("count", 0);
 
         listView = (ListView) findViewById(R.id.useTokenListview);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -65,34 +73,53 @@ public class UseToken extends AppCompatActivity {
         * */
 
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("project").child("UserAccount")
-                .child(firebaseUser.getUid());
-        mTokenRef = mDatabaseRef.child("Tokens");
-        mTokenRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot data : snapshot.getChildren()){
-                    UserToken userToken = data.getValue(UserToken.class);
-                    menuName.add(userToken.getMenuName());
-                    numberToken.add(userToken.getTokenNumber());
+//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("project").child("UserAccount")
+//                .child(firebaseUser.getUid());
+//        mTokenRef = mDatabaseRef.child("Tokens");
+//        mTokenRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot data : snapshot.getChildren()){
+//                    UserToken userToken = data.getValue(UserToken.class);
+//                    menuName.add(userToken.getMenuName());
+//                    numberToken.add(Integer.valueOf(userToken.getTokenNumber()));
+//
+//                }
+//                data = new ArrayList<selectedMenu>();
+//                for(int i = 0; i < menuName.size(); i++){
+//                    data.add(new selectedMenu(menuName.get(i).toString(), numberToken.get(i)));
+//                    Toast.makeText(getApplicationContext(), menuName.get(i), Toast.LENGTH_SHORT).show();
+//                }
+//                SharedPreferences tokenNumber = getSharedPreferences("TokenNumber", Activity.MODE_PRIVATE);
+//                SharedPreferences.Editor tokenNumberEdit = tokenNumber.edit();
+//                tokenNumberEdit.putInt("number", menuName.size());
+//                tokenNumberEdit.commit();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
-                }
-                data = new ArrayList<selectedMenu>();
-                for(int i = 0; i < menuName.size(); i++){
-                    data.add(new selectedMenu(menuName.get(i), numberToken.get(i)));
-                }
-                SharedPreferences tokenNumber = getSharedPreferences("TokenNumber", Activity.MODE_PRIVATE);
-                SharedPreferences.Editor tokenNumberEdit = tokenNumber.edit();
-                tokenNumberEdit.putInt("number", menuName.size());
-                tokenNumberEdit.commit();
+        SharedPreferences selectedMenu = getSharedPreferences("SelectedMenu", Activity.MODE_PRIVATE);
+        String strList = selectedMenu.getString("menuList", null);
+        List<String> menuList = Arrays.asList(strList.split("\n"));
+        String[] splitString = null;
+        data = new ArrayList<selectedMenu>();
+        for(int i = 0; i < menuList.size(); i++){
+            splitString = menuList.get(i).split(":");
+            String strMenu = splitString[0];
+            String tNum = splitString[1].substring(1, splitString[1].length()-1);
 
-            }
+            int int_val = Integer.parseInt(tNum);
+            data.add(new selectedMenu(strMenu, int_val));
+            Toast.makeText(getApplicationContext(), data.get(i).mName + data.get(i).numberToken, Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        }
 
-            }
-        });
+
 
         UseTokenAdapter adapter = new UseTokenAdapter(this, data);
         listView.setAdapter(adapter);
@@ -122,8 +149,8 @@ class UseTokenAdapter extends BaseAdapter{
     }
     @Override
     public int getCount() {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("TokenNumber", Activity.MODE_PRIVATE);
-        int temp = sharedPreferences.getInt("number", 0);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("getCount", Activity.MODE_PRIVATE);
+        int temp = (int)sharedPreferences.getLong("count", 0);
         return temp;
     }
 
@@ -143,16 +170,16 @@ class UseTokenAdapter extends BaseAdapter{
 
         if(view == null){
             itemLayout = View.inflate(mContext, R.layout.use_token_item, null);
-
         }
         else{
             itemLayout = view;
         }
-//        TextView menuName = (TextView) itemLayout.findViewById(R.id.use_menu_name);
-//        TextView numberToken = (TextView)itemLayout.findViewById(R.id.use_number_token);
-//
-//        menuName.setText(mData.get(i).mName);
-//        numberToken.setText("식권 수 : "+mData.get(i).numberToken + "");
+        TextView menuName = (TextView) itemLayout.findViewById(R.id.use_menu_name);
+        TextView numberToken = (TextView) itemLayout.findViewById(R.id.use_number_token);
+
+        menuName.setText(mData.get(i).mName);
+        numberToken.setText("식권 수 :"+ mData.get(i).numberToken+" 개");
+
 
 
         return itemLayout;

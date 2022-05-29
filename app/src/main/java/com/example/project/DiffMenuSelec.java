@@ -53,6 +53,7 @@ public class DiffMenuSelec extends AppCompatActivity {
         });
 
 
+
         sv.setSubmitButtonEnabled(true);
 
         data = new ArrayList<MenuSelect>();
@@ -161,6 +162,7 @@ class MyAdapter extends BaseAdapter{
 
                 Intent intent = new Intent(mContext, PaymentActivity.class);
                 mContext.startActivity(intent);
+
             }
         });
 

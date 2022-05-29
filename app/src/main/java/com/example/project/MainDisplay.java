@@ -11,9 +11,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,6 +38,10 @@ public class MainDisplay extends AppCompatActivity {
     TextView menuDisplay, menuDate;
     Button diffMenu, payment;
     String menuStr = "";
+    private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseRef;
+    private Integer tokenNumber = 0;
+
     public static String[] menuArr = new String[7];
     int i = 0;
 
@@ -42,7 +55,8 @@ public class MainDisplay extends AppCompatActivity {
         menuDisplay = (TextView) findViewById(R.id.menuDisplay);
         diffMenu = (Button) findViewById(R.id.checkDiffMenu);
         payment = (Button) findViewById(R.id.payment);
-
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
         SimpleDateFormat mFormat = new SimpleDateFormat("MM-dd");
         Date mDate = new Date(System.currentTimeMillis());
@@ -91,6 +105,7 @@ public class MainDisplay extends AppCompatActivity {
         myPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(MainDisplay.this, MyPage.class);
                 startActivity(intent);
             }

@@ -35,8 +35,8 @@ public class MyPage extends AppCompatActivity {
     private DatabaseReference mDatabaseRef, mTokenRef;
     ArrayList<String> menuName = new ArrayList<String>();
     ArrayList<Integer> numberToken = new ArrayList<Integer>();
-
-
+    String strMenuList ="";
+    long count = 0;
 
 
 
@@ -45,6 +45,9 @@ public class MyPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
         mFirebaseAuth = FirebaseAuth.getInstance();
+        strMenuList = "";
+        menuName.clear();
+        numberToken.clear();
 
         btn_history = findViewById(R.id.btn_history);
         btn_useToken = findViewById(R.id.btn_useToken);
@@ -52,6 +55,11 @@ public class MyPage extends AppCompatActivity {
         tv_userName = findViewById(R.id.tv_userName);
         tv_list = findViewById(R.id.tv_list);
         SharedPreferences selectedMenu = getSharedPreferences("SelectedMenu", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor selectedEdit = selectedMenu.edit();
+
+
+        SharedPreferences getCount = getSharedPreferences("getCount", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor getCountEdit = getCount.edit();
 
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -83,17 +91,22 @@ public class MyPage extends AppCompatActivity {
         mTokenRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String strMenuList ="";
+
                 for(DataSnapshot data : snapshot.getChildren()){
                     UserToken userToken = data.getValue(UserToken.class);
                     menuName.add(userToken.getMenuName());
                     numberToken.add(userToken.getTokenNumber());
-
+                    count = snapshot.getChildrenCount();
                 }
+                getCountEdit.putLong("count", count);
+                getCountEdit.commit();
+
                 for(int i = 0; i < menuName.size(); i++){
                     strMenuList += menuName.get(i) +" : " +numberToken.get(i) +"개\n" ;
                 }
                 tv_list.setText(strMenuList);
+                selectedEdit.putString("menuList",strMenuList);
+                selectedEdit.commit();
 
             }
 

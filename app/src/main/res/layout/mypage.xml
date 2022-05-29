@@ -98,6 +98,7 @@
                 android:background="@drawable/text_background_bottom"
                 android:gravity="top"
                 android:textSize="20dp"
+                android:text="보유중인 식권 : 개수"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
