@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,6 +50,19 @@ public class MainDisplay extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_display);
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
 
         myPage = (ImageButton) findViewById(R.id.myPage);
         menuDate = (TextView) findViewById(R.id.menuDate);

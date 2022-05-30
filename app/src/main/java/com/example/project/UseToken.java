@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,19 @@ public class UseToken extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_token);
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
 
         menuName.clear();
         numberToken.clear();
@@ -79,12 +93,8 @@ public class UseToken extends AppCompatActivity {
 
             int int_val = Integer.parseInt(tNum);
             data.add(new selectedMenu(strMenu, int_val));
-            Toast.makeText(getApplicationContext(), data.get(i).mName + data.get(i).numberToken, Toast.LENGTH_SHORT).show();
 
         }
-
-
-
         UseTokenAdapter adapter = new UseTokenAdapter(this, data);
         listView.setAdapter(adapter);
     }

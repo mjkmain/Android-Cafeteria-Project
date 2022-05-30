@@ -1,6 +1,7 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 public class PaymentActivity extends AppCompatActivity {
     TextView tv_detail, tv_count;
     Button btn_pay, btn_plus, btn_minus;
-    ImageButton prev;
+    ImageButton prev, myPage;
 
     ImageView iv;
     int number = 1;
@@ -24,8 +25,22 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
         tv_detail = findViewById(R.id.tv_detail);
         btn_pay = findViewById(R.id.btn_pay);
+
+        myPage = findViewById(R.id.mypage);
         prev = findViewById(R.id.prev);
         iv = findViewById(R.id.imageView);
         btn_plus = findViewById(R.id.btn_plus);
@@ -33,7 +48,13 @@ public class PaymentActivity extends AppCompatActivity {
         tv_count = findViewById(R.id.tv_count);
 
         tv_count.setText(1 + "");
-
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PaymentActivity.this, MyPage.class);
+                startActivity(intent);
+            }
+        });
         SharedPreferences menu = getSharedPreferences("Menu", Activity.MODE_PRIVATE);
         SharedPreferences.Editor menuEdit = menu.edit();
 

@@ -5,7 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QRGeneratorActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tool"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:popupTheme="@style/AppTheme"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp">
+
+            <ImageButton
+                android:id="@+id/prevUseToken"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/natom"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="13dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mypage"
+
+                />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <ImageView
         android:id="@+id/iv_qr"
         android:layout_width="0dp"
@@ -19,19 +72,7 @@
         android:scaleType="fitXY"
          />
 
-
-        <ImageButton
-            android:id="@+id/prev"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="30dp"
-            android:background="@drawable/round_button"
-            android:scaleType="fitXY"
-            android:src="@drawable/previous"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            />
+    
 
 
 

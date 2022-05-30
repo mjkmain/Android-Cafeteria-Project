@@ -3,6 +3,7 @@ package com.example.project;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,6 +38,19 @@ public class SelectPaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_payment);
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
         tokenNumber = 0;
 
         ib_kakao = findViewById(R.id.ib_kakao);

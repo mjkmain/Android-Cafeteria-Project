@@ -1,154 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:text="My page"
-            android:background="@drawable/text_background"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp"
-            />
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/text_background"
-            android:text="로그아웃"
-            android:layout_marginLeft="180dp"/>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tool"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:popupTheme="@style/AppTheme"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="0dp">
+
+            <ImageButton
+                android:id="@+id/mp_prev"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/natom"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/btn_logout"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="13dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logout"
+
+                />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_user"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="18dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
-        android:layout_margin="12dp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="78dp">
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="160dp"
-                android:src="@drawable/usermypage"
                 android:background="#FAF9BA"
-                />
+                android:src="@drawable/usermypage" />
+
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_userName"
-                    android:layout_margin="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text = "USER NAME"
-                    />
+                    android:layout_margin="20dp"
+                    android:text="USER NAME" />
+
                 <TextView
                     android:id="@+id/tv_userID"
-                    android:layout_margin="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User description"
-                    />
+                    android:layout_margin="20dp"
+                    android:text="User description" />
             </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="155dp"
-                android:background="@drawable/text_background_top"
-                android:gravity="top|center"
-                android:text="보유중인 식권"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_list"
-                android:layout_width="240dp"
-                android:layout_height="260dp"
-                android:background="@drawable/text_background_bottom"
-                android:gravity="top"
-                android:textSize="20dp"
-                android:text="보유중인 식권 : 개수"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            <Button
-                android:id="@+id/btn_useToken"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_marginStart="240dp"
-                android:backgroundTint="#28ADE1"
-                android:text="   식권 사용   "
-                android:textSize="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btn_history"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_marginStart="240dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#28ADE1"
-                android:text="이용내역 확인"
-                android:textSize="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_useToken" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ImageButton
-        android:id="@+id/mp_prev"
-        android:layout_width="60dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="240dp"
         android:layout_height="60dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/round_button"
-        android:scaleType="fitXY"
-        android:src="@drawable/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="155dp"
+        android:background="@drawable/text_background_top"
+        android:gravity="top|center"
+        android:text="보유중인 식권"
+        android:textColor="@color/black"
+        android:fontFamily="@font/natobl"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_list"
+            android:layout_width="240dp"
+            android:layout_height="260dp"
+            android:background="@drawable/text_background_bottom"
+            android:gravity="top"
+            android:fontFamily="@font/natob"
+            android:paddingLeft="20dp"
+            android:text="보유중인 식권 : 개수"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_useToken"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+
+        android:background="@drawable/short_button"
+        android:fontFamily="@font/natob"
+        android:text="   식권 사용   "
+        android:textSize="17dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_list"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_history"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/short_button"
+        android:text="이용내역 확인"
+        android:fontFamily="@font/natob"
+
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_useToken"
+        app:layout_constraintStart_toStartOf="@+id/btn_useToken"
+        app:layout_constraintTop_toBottomOf="@+id/btn_useToken" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

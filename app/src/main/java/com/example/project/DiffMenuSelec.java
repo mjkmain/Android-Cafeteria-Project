@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 public class DiffMenuSelec extends AppCompatActivity {
     ListView menu_lv;
     ArrayList<MenuSelect> data;
-    SearchView sv;
     ImageButton prev, myPage;
 
     @Override
@@ -32,8 +32,20 @@ public class DiffMenuSelec extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diffmenuselec);
 
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
         menu_lv = (ListView) findViewById(R.id.menu_lv);
-        sv = (SearchView) findViewById(R.id.searchView);
         prev = (ImageButton) findViewById(R.id.prev);
         myPage = (ImageButton) findViewById(R.id.myPage);
 
@@ -54,7 +66,6 @@ public class DiffMenuSelec extends AppCompatActivity {
 
 
 
-        sv.setSubmitButtonEnabled(true);
 
         data = new ArrayList<MenuSelect>();
         data.add(new MenuSelect("해물순두부찌개", 4800, R.drawable.menu01));

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MyPage extends AppCompatActivity {
-    ImageButton prev;
-    Button btn_logout, btn_history, btn_useToken;
+    ImageButton prev, btn_logout;
+    Button btn_history, btn_useToken;
     TextView tv_userName, tv_userID, tv_list;
+
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -45,6 +47,19 @@ public class MyPage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage);
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         strMenuList = "";
         menuName.clear();

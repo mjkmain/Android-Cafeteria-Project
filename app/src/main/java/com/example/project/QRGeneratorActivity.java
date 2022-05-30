@@ -1,6 +1,7 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +32,19 @@ public class QRGeneratorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrgenerator);
+
+        /********************************************/
+        /*
+         * custom tool bar
+         * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -41,11 +56,12 @@ public class QRGeneratorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String menuName = intent.getStringExtra("menuName");
-        int tokenNumber = intent.getIntExtra("tokenNumber", 0);
+        String uniMenuName = korToUni(menuName);
+
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(menuName+","+ID, BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(uniMenuName+","+ID, BarcodeFormat.QR_CODE, 200, 200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             iv_qr.setImageBitmap(bitmap);
@@ -67,5 +83,31 @@ public class QRGeneratorActivity extends AppCompatActivity {
             }
         });
 
+    }
+    /*
+    * QR코드에 한국어 디코딩이 안되어서 유니코드로 변경
+    *
+    *           ************************* QR Code Progress*************************
+    *
+    *       (한국어 메뉴 이름, 사용자 UID) --(korToUni)--> (유니코드 메뉴 이름, 사용자 UID)--> QR 인코딩
+    *
+    *       -->스캔-->
+    *
+    *       QR 디코딩 --> (유니코드 메뉴 이름, 사용자 UID) --(uniToKor)--> (한국어 메뉴 이름, 사용자 UID)
+    *
+    *           ************************* QR Code Progress*************************
+    * */
+    public String korToUni(String kor){
+        StringBuffer result = new StringBuffer();
+
+        for(int i=0; i<kor.length(); i++){
+            int cd = kor.codePointAt(i);
+            if (cd < 128){
+                result.append(String.format("%c", cd));
+            }else{
+                result.append(String.format("\\u%04x", cd));
+            }
+        }
+        return result.toString();
     }
 }

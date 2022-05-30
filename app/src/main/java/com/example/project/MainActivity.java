@@ -5,6 +5,7 @@ import static com.example.project.R.layout.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -67,12 +68,25 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleSignInClient mGoogleSignInClient;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(login);
+
+        /********************************************/
+        /*
+        * custom tool bar
+        * */
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(getSupportActionBar().getTitle());
+        getSupportActionBar().setTitle(null);
+        /*******************************************/
+
+
+
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("project");
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_register = (Button) findViewById(R.id.btn_register);
