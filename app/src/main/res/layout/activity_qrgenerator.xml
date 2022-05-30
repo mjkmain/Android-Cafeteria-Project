@@ -27,7 +27,7 @@
             tools:layout_editor_absoluteY="0dp">
 
             <ImageButton
-                android:id="@+id/prevUseToken"
+                android:id="@+id/QRprev"
                 android:layout_width="24dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -45,6 +45,7 @@
                 android:textSize="24sp" />
 
             <ImageButton
+                android:id="@+id/QRmypage"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"

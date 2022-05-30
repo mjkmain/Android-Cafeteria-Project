@@ -127,7 +127,7 @@ public class SelectPaymentActivity extends AppCompatActivity {
                             userToken.setMenuName(payMenu);
                             userToken.setMenuPrice(payPrice);
                             userToken.setTokenNumber(tokenNumber);
-                            userToken.setMenuTotalPrice(payPrice*menuNumber);
+//                            userToken.setMenuTotalPrice(payPrice*menuNumber);
                             userToken.setPayMethod(payMethod);
 
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("Tokens").child(payMenu).setValue(userToken);

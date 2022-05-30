@@ -39,7 +39,7 @@ import java.util.List;
 public class UseToken extends AppCompatActivity {
     ListView listView;
     ArrayList<selectedMenu> data;
-    ImageButton prev;
+    ImageButton prev, myPage;
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef, mTokenRef;
@@ -62,7 +62,15 @@ public class UseToken extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
         /*******************************************/
 
-
+        myPage = findViewById(R.id.myPageUseToken);
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UseToken.this, MyPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         menuName.clear();
         numberToken.clear();
@@ -72,7 +80,7 @@ public class UseToken extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
-        prev = (ImageButton) findViewById(R.id.prevUseToken);
+        prev = findViewById(R.id.prevUseToken);
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,12 +170,8 @@ class UseTokenAdapter extends BaseAdapter{
                 intent.putExtra("menuName", mData.get(i).mName);
                 intent.putExtra("tokenNumber", mData.get(i).numberToken);
                 mContext.startActivity(intent);
-
             }
         });
-
-
-
         return itemLayout;
     }
 }

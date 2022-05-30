@@ -3,7 +3,7 @@ package com.example.project;
 public class UserToken {
     private int tokenNumber;
     private int menuPrice;
-    private int menuTotalPrice;
+//    private int menuTotalPrice;
     private String payMethod;
     private String menuName;
 
@@ -23,13 +23,13 @@ public class UserToken {
         this.payMethod = payMethod;
     }
 
-    public int getMenuTotalPrice() {
-        return menuTotalPrice;
-    }
-
-    public void setMenuTotalPrice(int menuTotalPrice) {
-        this.menuTotalPrice = menuTotalPrice;
-    }
+//    public int getMenuTotalPrice() {
+//        return menuTotalPrice;
+//    }
+//
+//    public void setMenuTotalPrice(int menuTotalPrice) {
+//        this.menuTotalPrice = menuTotalPrice;
+//    }
 
     public int getTokenNumber() {
         return tokenNumber;

@@ -27,7 +27,7 @@ public class QRGeneratorActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
 
     ImageView iv_qr;
-    ImageButton prev;
+    ImageButton prev, myPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,24 @@ public class QRGeneratorActivity extends AppCompatActivity {
         String ID = firebaseUser.getUid();
 
         iv_qr = findViewById(R.id.iv_qr);
-        prev = findViewById(R.id.prev);
+        prev = findViewById(R.id.QRprev);
+        myPage = findViewById(R.id.QRmypage);
+
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QRGeneratorActivity.this, MyPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Intent intent = getIntent();
         String menuName = intent.getStringExtra("menuName");

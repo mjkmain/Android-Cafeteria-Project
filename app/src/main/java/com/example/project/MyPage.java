@@ -125,6 +125,7 @@ public class MyPage extends AppCompatActivity {
         mTokenRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                strMenuList = "";
 
                 for(DataSnapshot data : snapshot.getChildren()){
                     UserToken userToken = data.getValue(UserToken.class);
