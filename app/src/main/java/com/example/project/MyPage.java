@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class MyPage extends AppCompatActivity {
     ImageButton prev, btn_logout;
-    Button btn_history, btn_useToken;
+    Button btn_history, btn_useToken, btn_currentUser;
     TextView tv_userName, tv_userID, tv_list;
 
 
@@ -65,6 +65,7 @@ public class MyPage extends AppCompatActivity {
         menuName.clear();
         numberToken.clear();
 
+        btn_currentUser = findViewById(R.id.btn_currentUser);
         btn_history = findViewById(R.id.btn_history);
         btn_useToken = findViewById(R.id.btn_useToken);
         tv_userID = findViewById(R.id.tv_userID);
@@ -96,10 +97,10 @@ public class MyPage extends AppCompatActivity {
                         if(!isGoogle) {
                             DataSnapshot dataSnapshot = task.getResult();
                             String userName = String.valueOf(dataSnapshot.child("userName").getValue());
-                            tv_userName.setText("User Name : \n" + userName);
+                            tv_userName.setText("User Name : \n" + userName+".");
 
                             String userID = String.valueOf(dataSnapshot.child("emailID").getValue());
-                            tv_userID.setText("User ID : \n" + userID);
+                            tv_userID.setText("User ID : \n" + userID+".");
                         }
                         /*
                          * 구글로 로그인한 경우 User Name, User ID -> intent로 설정
@@ -180,6 +181,15 @@ public class MyPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyPage.this, UseToken.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btn_currentUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyPage.this, CheckCurrentUser.class);
                 startActivity(intent);
             }
         });

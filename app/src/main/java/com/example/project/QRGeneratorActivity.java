@@ -96,6 +96,8 @@ public class QRGeneratorActivity extends AppCompatActivity {
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent1 = new Intent(QRGeneratorActivity.this, UseToken.class);
+                startActivity(intent1);
                 finish();
             }
         });

@@ -170,6 +170,7 @@ class UseTokenAdapter extends BaseAdapter{
                 intent.putExtra("menuName", mData.get(i).mName);
                 intent.putExtra("tokenNumber", mData.get(i).numberToken);
                 mContext.startActivity(intent);
+                ((Activity)mContext).finish();
             }
         });
         return itemLayout;
