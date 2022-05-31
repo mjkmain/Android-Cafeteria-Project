@@ -86,9 +86,6 @@ public class CheckCurrentUser extends AppCompatActivity {
                         DataSnapshot dataSnapshot = task.getResult();
                         currUser = String.valueOf(dataSnapshot.getValue());
                         String[] timeArr = currUser.split("sep");
-
-
-
                         /**
                          * 현재 시간
                          * */
@@ -97,7 +94,7 @@ public class CheckCurrentUser extends AppCompatActivity {
                         Calendar cal = Calendar.getInstance();
 
                         cal.setTime(now);
-                        cal.add(Calendar.MINUTE, -20);//현재시간 -20분을 기준으로
+                        cal.add(Calendar.MINUTE, -10);//현재시간 -20분을 기준으로
 
                         String currTime = df.format(cal.getTime());
                         //비교를 위해서 String to Date
@@ -114,10 +111,8 @@ public class CheckCurrentUser extends AppCompatActivity {
                                         storeTime = storeTime + df.format(entryTime)+"sep";
                                         currDatabaseRef.child("CurrentUser").setValue(storeTime);
                                         userNum ++;
-                                        Toast.makeText(getApplicationContext(), "if", Toast.LENGTH_SHORT).show();
 
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "else", Toast.LENGTH_SHORT).show();
 
                                     }
                                 } catch (ParseException e) {
