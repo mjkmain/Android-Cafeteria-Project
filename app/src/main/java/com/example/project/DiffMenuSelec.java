@@ -46,8 +46,8 @@ public class DiffMenuSelec extends AppCompatActivity {
 
 
         menu_lv = (ListView) findViewById(R.id.menu_lv);
-        prev = (ImageButton) findViewById(R.id.prev);
-        myPage = (ImageButton) findViewById(R.id.myPage);
+        prev = (ImageButton) findViewById(R.id.prevDiff);
+        myPage = (ImageButton) findViewById(R.id.myPageDiff);
 
         prev.setOnClickListener(new View.OnClickListener() {
             @Override

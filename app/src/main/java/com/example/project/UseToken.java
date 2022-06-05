@@ -160,7 +160,8 @@ class UseTokenAdapter extends BaseAdapter{
         TextView numberToken = (TextView) itemLayout.findViewById(R.id.use_number_token);
 
         menuName.setText(mData.get(i).mName);
-        numberToken.setText("식권 수 :"+ mData.get(i).numberToken+" 개");
+//        numberToken.setText("식권 수 :"+ mData.get(i).numberToken+" 개");
+        numberToken.setText(mData.get(i).numberToken+" 개");
 
         Button btn_use = itemLayout.findViewById(R.id.btn_use);
         btn_use.setOnClickListener(new View.OnClickListener() {

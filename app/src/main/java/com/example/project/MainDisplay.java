@@ -101,7 +101,7 @@ public class MainDisplay extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 int dayOfWeekNumber = calendar.get(Calendar.DAY_OF_WEEK);
                 //주말이라 메뉴 확인을 위해서 임의로 지정
-                dayOfWeekNumber = 4;
+
                 if(dayOfWeekNumber!=1 && dayOfWeekNumber!=7) {
                     menuDisplay.setText(menuArr[dayOfWeekNumber - 2]);
                 }

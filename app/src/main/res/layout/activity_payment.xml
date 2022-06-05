@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaymentActivity">
+    tools:context=".PaymentActivity"
+    android:background="@color/back_ground"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,40 +21,39 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/back_ground"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:popupTheme="@style/AppTheme"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="0dp">
 
             <ImageButton
-                android:id="@+id/prev"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/pay_prev"
+                android:layout_width="22dp"
+                android:layout_height="35dp"
                 android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/arrow" />
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_arrow" />
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/natom"
+                android:fontFamily="@font/apple_m"
                 android:gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/mypage"
+                android:id="@+id/pay_mypage"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="13dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/mypage"
+                android:src="@drawable/ic_mypage"
 
                 />
 
@@ -64,7 +65,7 @@
         android:id="@+id/tv_contents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/natobl"
+        android:fontFamily="@font/apple_b"
         android:text="주문내역"
         android:textColor="@color/black"
         android:textSize="40sp"
@@ -76,7 +77,8 @@
         android:id="@+id/tv_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/natosb"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/apple_b"
         android:text="정보 - 메뉴 이름, 가격, 이미지"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -89,7 +91,12 @@
         android:id="@+id/btn_pay"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/apple_b"
+        android:background="@drawable/short_button"
+        android:textColor="@color/white"
         android:text="결제하기"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
@@ -112,9 +119,12 @@
         android:id="@+id/tv_count"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/textstroke"
+        android:fontFamily="@font/apple_b"
         android:gravity="center"
         android:text="0"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +136,8 @@
         android:layout_height="40dp"
         android:background="@drawable/buttonstrokeleft"
         android:text="-"
+        android:textColor="@color/black"
+        android:fontFamily="@font/apple_h"
         app:layout_constraintBottom_toBottomOf="@+id/tv_count"
         app:layout_constraintEnd_toStartOf="@+id/tv_count"
         app:layout_constraintTop_toTopOf="@+id/tv_count" />
@@ -136,6 +148,8 @@
         android:layout_height="40dp"
         android:background="@drawable/buttonstrokeright"
         android:text="+"
+        android:textColor="@color/black"
+        android:fontFamily="@font/apple_h"
         app:layout_constraintBottom_toBottomOf="@+id/tv_count"
         app:layout_constraintStart_toEndOf="@+id/tv_count"
         app:layout_constraintTop_toTopOf="@+id/tv_count" />

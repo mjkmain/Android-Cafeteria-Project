@@ -40,12 +40,14 @@ public class PaymentActivity extends AppCompatActivity {
         tv_detail = findViewById(R.id.tv_detail);
         btn_pay = findViewById(R.id.btn_pay);
 
-        myPage = findViewById(R.id.mypage);
-        prev = findViewById(R.id.prev);
+        myPage = findViewById(R.id.pay_mypage);
+        prev = findViewById(R.id.pay_prev);
         iv = findViewById(R.id.imageView);
         btn_plus = findViewById(R.id.btn_plus);
         btn_minus = findViewById(R.id.btn_minus);
         tv_count = findViewById(R.id.tv_count);
+
+
 
         tv_count.setText(1 + "");
         myPage.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +90,11 @@ public class PaymentActivity extends AppCompatActivity {
         btn_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 number --;
+                if(number< 1){
+                    btn_minus.setClickable(false);
+                }
                 tv_count.setText(number + "");
                 int totalPrice = menuPrice*number;
                 tv_detail.setText("주문 내역 : " + menuName + "\n수랑 : "+number+"\n가격 : " + totalPrice);
@@ -98,7 +104,11 @@ public class PaymentActivity extends AppCompatActivity {
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 number ++;
+                if(number >= 1){
+                    btn_minus.setClickable(true);
+                }
                 tv_count.setText(number + "");
                 int totalPrice = menuPrice*number;
                 tv_detail.setText("주문 내역 : " + menuName + "\n수랑 : "+number+"\n가격 : " + totalPrice);

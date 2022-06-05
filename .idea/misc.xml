@@ -7,8 +7,10 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/buttonstrokeleft.xml" value="0.2285" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/buttonstrokeright.xml" value="0.2285" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/custombutton.xml" value="0.2695" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/ic_arrow.xml" value="0.2065" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/long_button.xml" value="0.2285" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/menu_textview_botton.xml" value="0.2285" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/menu_textview_top.xml" value="0.2065" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/menutextview.xml" value="0.2285" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/mypage.xml" value="0.225" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/drawable/round_button.xml" value="0.225" />
@@ -35,6 +37,7 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/mypage.xml" value="0.3463203463203463" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/order.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/order_select.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/test.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/title_bar.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/Project/app/src/main/res/layout/use_token_item.xml" value="0.36614583333333334" />
       </map>

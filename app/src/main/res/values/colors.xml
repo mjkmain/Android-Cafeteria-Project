@@ -14,4 +14,6 @@
     <color name="background_color_reverse">#161a29</color>
     <!--    <color name="facebook_button_color">#3B5999</color>-->
     <color name="loading_overlay_color">#1A525050</color>
+    <color name="back_ground">#F0F6FC</color>
+    <color name="line">#4BCCE2</color>
 </resources>

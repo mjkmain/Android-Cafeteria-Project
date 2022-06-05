@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/back_ground"
+
     android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +21,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/back_ground"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:popupTheme="@style/AppTheme"
@@ -28,20 +30,20 @@
 
             <ImageButton
                 android:id="@+id/mp_prev"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="35dp"
                 android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/arrow" />
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_arrow" />
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/natom"
+                android:fontFamily="@font/apple_m"
                 android:gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
@@ -52,7 +54,7 @@
                 android:layout_marginRight="13dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logout"
+                android:src="@drawable/logout_1"
 
                 />
 
@@ -93,18 +95,23 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/tv_userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="USER NAME" />
+                    android:text="User name"
+                    android:fontFamily="@font/apple_b"
+                    />
 
                 <TextView
                     android:id="@+id/tv_userID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:text="User description" />
+                    android:text="User description"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/apple_b"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -126,8 +133,8 @@
         android:gravity="top|center"
         android:text="보유중인 식권"
         android:textColor="@color/black"
-        android:fontFamily="@font/natobl"
-
+        android:fontFamily="@font/apple_b"
+        android:paddingTop="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -140,7 +147,7 @@
             android:layout_height="260dp"
             android:background="@drawable/text_background_bottom"
             android:gravity="top"
-            android:fontFamily="@font/natob"
+            android:fontFamily="@font/apple_m"
             android:paddingLeft="20dp"
             android:text="보유중인 식권 : 개수"
             android:textColor="@color/black"
@@ -153,11 +160,11 @@
         android:id="@+id/btn_useToken"
         android:layout_width="140dp"
         android:layout_height="100dp"
-
+        android:textColor="@color/white"
         android:background="@drawable/short_button"
-        android:fontFamily="@font/natob"
+        android:fontFamily="@font/apple_b"
         android:text="   식권 사용   "
-        android:textSize="17dp"
+        android:textSize="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_list"
@@ -165,32 +172,18 @@
 
 
     <Button
-        android:id="@+id/btn_history"
-        android:layout_width="140dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/short_button"
-        android:fontFamily="@font/natob"
-        android:text="이용내역 확인"
-
-        android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_currentUser"
-        app:layout_constraintEnd_toEndOf="@+id/btn_useToken"
-        app:layout_constraintStart_toStartOf="@+id/btn_useToken"
-        app:layout_constraintTop_toBottomOf="@+id/btn_useToken" />
-
-    <Button
         android:id="@+id/btn_currentUser"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:background="@drawable/short_button"
-        android:fontFamily="@font/natob"
+        android:fontFamily="@font/apple_b"
         android:text="혼잡도 확인"
-
-        android:textSize="17dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/tv_list"
-        app:layout_constraintEnd_toEndOf="@+id/btn_history"
-        app:layout_constraintStart_toStartOf="@+id/btn_history" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_useToken"
+        app:layout_constraintStart_toStartOf="@+id/btn_useToken"
+        app:layout_constraintTop_toBottomOf="@+id/btn_useToken" />
 
 
 

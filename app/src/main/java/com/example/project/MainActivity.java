@@ -146,8 +146,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             try{
                 Calendar calendar = Calendar.getInstance();
                 int dayOfWeekNumber = calendar.get(Calendar.DAY_OF_WEEK);
-                //주말이라 메뉴 확인을 위해서 임의로 지정
-                dayOfWeekNumber = 4;
+
                 if(dayOfWeekNumber!=1 && dayOfWeekNumber!=7) {
                     login_menu.setText(menuArr[dayOfWeekNumber - 2]);
                 }

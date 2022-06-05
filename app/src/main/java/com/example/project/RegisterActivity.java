@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         /*******************************************/
 
 
-        btn_prev = findViewById(R.id.prev);
+        btn_prev = findViewById(R.id.reg_prev);
         btn_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

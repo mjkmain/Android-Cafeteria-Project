@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SelectPaymentActivity extends AppCompatActivity {
-    private ImageButton ib_kakao, ib_naver, ib_payco, ib_credit;
+    private ImageButton ib_kakao, ib_naver, ib_payco, ib_credit, prev, myPage;
     private String payMethod;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
@@ -50,7 +50,23 @@ public class SelectPaymentActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
         /*******************************************/
 
+        myPage=findViewById(R.id.sel_mypage);
+        myPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(SelectPaymentActivity.this, MyPage.class);
+                startActivity(intent);
+            }
+        });
+
+        prev = findViewById(R.id.sel_prev);
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         tokenNumber = 0;
 
         ib_kakao = findViewById(R.id.ib_kakao);

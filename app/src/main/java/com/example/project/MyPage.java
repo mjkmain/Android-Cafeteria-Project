@@ -66,7 +66,6 @@ public class MyPage extends AppCompatActivity {
         numberToken.clear();
 
         btn_currentUser = findViewById(R.id.btn_currentUser);
-        btn_history = findViewById(R.id.btn_history);
         btn_useToken = findViewById(R.id.btn_useToken);
         tv_userID = findViewById(R.id.tv_userID);
         tv_userName = findViewById(R.id.tv_userName);
