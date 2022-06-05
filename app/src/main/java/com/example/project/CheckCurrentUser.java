@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ public class CheckCurrentUser extends AppCompatActivity {
     private DatabaseReference currDatabaseRef;
     String currUser;
     int userNum = 0;
-
+    ProgressBar progressBar;
     ImageButton prev, mypage;
     TextView tv;
 
@@ -48,6 +49,10 @@ public class CheckCurrentUser extends AppCompatActivity {
         toolbar_title.setText(getSupportActionBar().getTitle());
         getSupportActionBar().setTitle(null);
         /*******************************************/
+
+        progressBar = findViewById(R.id.progress);
+        progressBar.setMax(100);
+        progressBar.setProgress(30);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         currDatabaseRef = FirebaseDatabase.getInstance().getReference("project");
