@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class MainDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main_display);
 
         /********************************************/
@@ -100,7 +102,7 @@ public class MainDisplay extends AppCompatActivity {
             try{
                 Calendar calendar = Calendar.getInstance();
                 int dayOfWeekNumber = calendar.get(Calendar.DAY_OF_WEEK);
-                //주말이라 메뉴 확인을 위해서 임의로 지정
+
 
                 if(dayOfWeekNumber!=1 && dayOfWeekNumber!=7) {
                     menuDisplay.setText(menuArr[dayOfWeekNumber - 2]);

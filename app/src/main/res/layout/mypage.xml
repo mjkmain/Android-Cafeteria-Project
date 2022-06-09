@@ -118,36 +118,34 @@
     </androidx.cardview.widget.CardView>
 
 
-
-
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="155dp"
+
         android:background="@drawable/text_background_top"
+        android:fontFamily="@font/apple_b"
         android:gravity="top|center"
+        android:paddingTop="15dp"
         android:text="보유중인 식권"
         android:textColor="@color/black"
-        android:fontFamily="@font/apple_b"
-        android:paddingTop="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cd_user" />
 
-        <TextView
+    <TextView
             android:id="@+id/tv_list"
             android:layout_width="240dp"
-            android:layout_height="260dp"
+            android:layout_height="300dp"
             android:background="@drawable/text_background_bottom"
             android:gravity="top"
             android:fontFamily="@font/apple_m"
+            android:paddingTop="5dp"
             android:paddingLeft="20dp"
             android:text="보유중인 식권 : 개수"
             android:textColor="@color/black"
