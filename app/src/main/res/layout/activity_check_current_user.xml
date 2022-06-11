@@ -61,36 +61,81 @@
         </androidx.appcompat.widget.Toolbar>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
-        android:translationX="-130dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="280dp"
+        android:rotation="270"
+        android:translationX="-150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:rotation="270"
-        >
-    <ProgressBar
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:id="@+id/progress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="300dp"
-        android:layout_height="12dp"
-        android:progressDrawable="@drawable/progressbar_custom"
+        <ProgressBar
 
-         />
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="330dp"
+            android:layout_height="12dp"
+            android:progressDrawable="@drawable/progressbar_custom"
+
+            />
     </LinearLayout>
+
     <TextView
         android:id="@+id/tv_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:layout_marginTop="41dp"
         android:fontFamily="@font/apple_m"
+        android:textColor="@color/black"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tool" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.androidplot.xy.XYPlot
+
+            android:id="@+id/plot"
+            style="@style/APDefacto.Light"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+
+            app:backgroundColor="@color/back_ground"
+            app:domainLineColor="@color/ap_transparent"
+            app:domainOriginLineColor="@color/ap_transparent"
+            app:domainTitle=""
+
+            app:graphAnchor="right_bottom"
+            app:graphBackgroundColor="@color/back_ground"
+            app:borderColor="@color/back_ground"
+
+            app:graphHorizontalPosition="0dp"
+            app:graphHorizontalPositioning="absolute_from_right"
+            app:graphVerticalPosition="0dp"
+            app:graphVerticalPositioning="relative_from_bottom"
+            app:lineLabelRotationBottom="0"
+
+            app:lineLabels="left|bottom"
+            app:rangeLineColor="@color/ap_transparent"
+            app:rangeOriginLineColor="@color/ap_transparent"
+            app:rangeTitle=""
+            app:title="" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
